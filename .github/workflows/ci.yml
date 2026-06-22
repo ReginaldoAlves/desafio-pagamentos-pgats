@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:                             # Gatilho 1: Execução por push
+  workflow_dispatch:                 # Gatilho 2: Execução manual (botão no GitHub)
+  schedule:
+    - cron: '0 0 * * *'             # Gatilho 3: Execução agendada (Todo dia à meia-noite UTC)
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        
+    - run: yarn install
+    
+    - name: Executar testes e gerar relatório
+      run: yarn test --reporter mochawesome --reporter-options reportDir=relatorio,reportFilename=resultado
+      continue-on-error: true       # Garante que o relatório seja salvo mesmo se o teste falhar
+      
+    - name: Salvar Relatório de Testes
+      uses: actions/upload-artifact@v4 # Salva e publica o relatório na aba Actions
+      with:
+        name: relatorio-de-testes
+        path: relatorio/

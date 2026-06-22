@@ -4,13 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
-  "dependencies": {
-    "mocha": "^11.7.5"
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReginaldoAlves/desafio-pagamentos-pgats.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ReginaldoAlves/desafio-pagamentos-pgats/issues"
+  },
+  "homepage": "https://github.com/ReginaldoAlves/desafio-pagamentos-pgats#readme",
+  "devDependencies": {
+    "mocha": "^10.0.0",
+    "mochawesome": "^7.1.4"
   }
 }
